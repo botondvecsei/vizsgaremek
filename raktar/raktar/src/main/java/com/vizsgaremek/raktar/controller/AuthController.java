@@ -1,5 +1,5 @@
 package com.vizsgaremek.raktar.controller;
 
 public class AuthController {
-    //this is a test1234
+    //this is a test
 }
