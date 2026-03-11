@@ -1,4 +1,48 @@
 package com.vizsgaremek.raktar.service;
 
+import com.vizsgaremek.raktar.entity.Rendeles;
+import com.vizsgaremek.raktar.entity.RendelesTetel;
+import com.vizsgaremek.raktar.entity.enums.MozgasTipus;
+import com.vizsgaremek.raktar.entity.enums.RendelesStatusz;
+import com.vizsgaremek.raktar.repository.KeszletmozgasRepository;
+import com.vizsgaremek.raktar.repository.RendelesRepository;
+import com.vizsgaremek.raktar.repository.RendelesTetelRepository;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
 public class RendelesService {
+    private final RendelesRepository rendelesRepository;
+    private final RendelesTetelRepository tetelRepository;
+    private final KeszletService keszletService;
+    private final KeszletmozgasRepository keszletmozgasRepository;
+
+    @Transactional
+    public void statuszModositas(Integer rendelesId, RendelesStatusz ujStatusz){
+        Rendeles rendeles = rendelesRepository.findById(rendelesId)
+                .orElseThrow(() -> new RuntimeException("Rendeles nem található!"));
+
+        if (rendeles.getStatusz() == ujStatusz) return;
+
+        rendeles.setStatusz(ujStatusz);
+
+        if (ujStatusz == RendelesStatusz.teljesitve){
+
+            List<RendelesTetel> tetelek = tetelRepository.findByRendelesId(rendelesId);
+
+            for (RendelesTetel tetel : tetelek){
+                keszletService.keszletModositas(
+                        tetel.getTermek().getId(),
+                        tetel.getMennyiseg(),
+                        MozgasTipus.bevetel,
+                        "Automatikus bevételezés" + rendelesId + "számú rendelésből."
+                );
+            }
+        }
+        rendelesRepository.save(rendeles);
+    }
 }

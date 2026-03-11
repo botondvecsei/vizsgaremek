@@ -44,7 +44,6 @@ public class KeszletService {
         mozgas.setTipus(tipus);
         mozgas.setMennyiseg(valtozasMennyiseg);
         mozgas.setMegjegyzes(megjegyzes);
-        mozgas.setDatum(LocalDateTime.now());
         mozgasRepository.save(mozgas);
     }
 }

@@ -47,7 +47,6 @@ public class BeszerzesService {
                 ujRendeles.setBeszallito(beszallito);
                 ujRendeles.setStatusz(RendelesStatusz.tervezett);
                 ujRendeles.setOsszar(tetelOsszAr);
-                ujRendeles.setLetrehozasDatum(LocalDateTime.now());
 
                 Rendeles mentettRendeles = rendelesRepository.save(ujRendeles);
 
