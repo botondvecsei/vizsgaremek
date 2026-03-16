@@ -14,11 +14,12 @@ public class RendelesController {
 
     @PutMapping("/{id}/statusz")
     public void statuszModositas(@PathVariable Integer id, @RequestBody StatuszRequest request){
-        rendelesService.statuszModositas(id, request.getUjStatusz());
+        rendelesService.statuszModositas(id, request.getUjStatusz(), request.getUserId());
     }
 
     @Data
     public static class StatuszRequest{
         private RendelesStatusz ujStatusz;
+        private Integer userId;
     }
 }

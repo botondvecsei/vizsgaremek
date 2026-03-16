@@ -1,9 +1,12 @@
 package com.vizsgaremek.raktar.service;
 
+import com.vizsgaremek.raktar.entity.Felhasznalo;
 import com.vizsgaremek.raktar.entity.Rendeles;
 import com.vizsgaremek.raktar.entity.RendelesTetel;
+import com.vizsgaremek.raktar.entity.enums.Jogkor;
 import com.vizsgaremek.raktar.entity.enums.MozgasTipus;
 import com.vizsgaremek.raktar.entity.enums.RendelesStatusz;
+import com.vizsgaremek.raktar.repository.FelhasznaloRepository;
 import com.vizsgaremek.raktar.repository.KeszletmozgasRepository;
 import com.vizsgaremek.raktar.repository.RendelesRepository;
 import com.vizsgaremek.raktar.repository.RendelesTetelRepository;
@@ -20,11 +23,21 @@ public class RendelesService {
     private final RendelesTetelRepository tetelRepository;
     private final KeszletService keszletService;
     private final KeszletmozgasRepository keszletmozgasRepository;
+    private final FelhasznaloRepository felhasznaloRepository;
 
     @Transactional
-    public void statuszModositas(Integer rendelesId, RendelesStatusz ujStatusz){
+    public void statuszModositas(Integer rendelesId, RendelesStatusz ujStatusz, Integer vegrehajtoUserId){
+
+        Felhasznalo vegrehajto = felhasznaloRepository.findById(vegrehajtoUserId)
+                .orElseThrow(() -> new RuntimeException("Felhasználó nem található"));
+
+        if ((ujStatusz == RendelesStatusz.megrendelve || ujStatusz == RendelesStatusz.elutasitva)
+                && vegrehajto.getJogkor() != Jogkor.admin){
+            throw new RuntimeException("Nincs jogosultságod a rendelés jóváhagyásához");
+        }
+
         Rendeles rendeles = rendelesRepository.findById(rendelesId)
-                .orElseThrow(() -> new RuntimeException("Rendeles nem található!"));
+                .orElseThrow(() -> new RuntimeException("Rendelés nem található!"));
 
         if (rendeles.getStatusz() == ujStatusz) return;
 
