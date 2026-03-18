@@ -3,6 +3,7 @@ package com.vizsgaremek.raktar.service;
 import com.vizsgaremek.raktar.entity.Termek;
 import com.vizsgaremek.raktar.repository.TermekRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +11,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class TermekService {
-    private final TermekRepository termekRepository;
+    @Autowired
+    private TermekRepository termekRepository;
 
     public List<Termek> getOsszesTermek(){
         return termekRepository.findAll();

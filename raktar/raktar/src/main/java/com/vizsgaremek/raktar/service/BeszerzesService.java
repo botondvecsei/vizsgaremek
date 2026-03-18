@@ -5,6 +5,7 @@ import com.vizsgaremek.raktar.entity.enums.RendelesStatusz;
 import com.vizsgaremek.raktar.repository.*;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -13,14 +14,17 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class BeszerzesService {
-
-    private final TermekRepository termekRepository;
-    private final BeszallitoArRepository beszallitoArRepository;
-    private final RendelesRepository rendelesRepository;
-    private final RendelesTetelRepository tetelRepository;
-    private final FelhasznaloRepository felhasznaloRepository;
+    @Autowired
+    private TermekRepository termekRepository;
+    @Autowired
+    private BeszallitoArRepository beszallitoArRepository;
+    @Autowired
+    private RendelesRepository rendelesRepository;
+    @Autowired
+    private RendelesTetelRepository tetelRepository;
+    @Autowired
+    private FelhasznaloRepository felhasznaloRepository;
 
     @Transactional
     public void automatikusBeszerzesFuttatasa(Integer rendszerUserId) {

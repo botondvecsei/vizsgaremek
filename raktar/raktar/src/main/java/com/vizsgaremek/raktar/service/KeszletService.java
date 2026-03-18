@@ -8,15 +8,18 @@ import com.vizsgaremek.raktar.repository.KeszletmozgasRepository;
 import com.vizsgaremek.raktar.repository.TermekRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
 @Service
-@RequiredArgsConstructor
+
 public class KeszletService {
-    private final TermekRepository termekRepository;
-    private final KeszletmozgasRepository mozgasRepository;
+    @Autowired
+    private TermekRepository termekRepository;
+    @Autowired
+    private KeszletmozgasRepository mozgasRepository;
 
     @Transactional
     public void keszletModositas(Integer termekId, Integer valtozasMennyiseg, MozgasTipus tipus, String megjegyzes){

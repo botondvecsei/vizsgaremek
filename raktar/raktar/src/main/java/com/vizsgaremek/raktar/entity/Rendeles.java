@@ -34,4 +34,60 @@ public class Rendeles {
 
     @Column(name = "letrehozas_datum", insertable = false, updatable = false)
     private LocalDateTime letrehozasDatum;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Felhasznalo getLetrehozo() {
+        return letrehozo;
+    }
+
+    public void setLetrehozo(Felhasznalo letrehozo) {
+        this.letrehozo = letrehozo;
+    }
+
+    public Felhasznalo getJovahagyo() {
+        return jovahagyo;
+    }
+
+    public void setJovahagyo(Felhasznalo jovahagyo) {
+        this.jovahagyo = jovahagyo;
+    }
+
+    public Beszallito getBeszallito() {
+        return beszallito;
+    }
+
+    public void setBeszallito(Beszallito beszallito) {
+        this.beszallito = beszallito;
+    }
+
+    public RendelesStatusz getStatusz() {
+        return statusz;
+    }
+
+    public void setStatusz(RendelesStatusz statusz) {
+        this.statusz = statusz;
+    }
+
+    public BigDecimal getOsszar() {
+        return osszar;
+    }
+
+    public void setOsszar(BigDecimal osszar) {
+        this.osszar = osszar;
+    }
+
+    public LocalDateTime getLetrehozasDatum() {
+        return letrehozasDatum;
+    }
+
+    public void setLetrehozasDatum(LocalDateTime letrehozasDatum) {
+        this.letrehozasDatum = letrehozasDatum;
+    }
 }

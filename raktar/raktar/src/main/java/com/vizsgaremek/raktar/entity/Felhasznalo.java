@@ -24,4 +24,44 @@ public class Felhasznalo {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Jogkor jogkor;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNev() {
+        return nev;
+    }
+
+    public void setNev(String nev) {
+        this.nev = nev;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getJelszo() {
+        return jelszo;
+    }
+
+    public void setJelszo(String jelszo) {
+        this.jelszo = jelszo;
+    }
+
+    public Jogkor getJogkor() {
+        return jogkor;
+    }
+
+    public void setJogkor(Jogkor jogkor) {
+        this.jogkor = jogkor;
+    }
 }

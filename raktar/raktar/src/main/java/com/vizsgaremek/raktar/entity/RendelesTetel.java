@@ -26,4 +26,44 @@ public class RendelesTetel {
 
     @Column(nullable = false)
     private BigDecimal ar;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Rendeles getRendeles() {
+        return rendeles;
+    }
+
+    public void setRendeles(Rendeles rendeles) {
+        this.rendeles = rendeles;
+    }
+
+    public Termek getTermek() {
+        return termek;
+    }
+
+    public void setTermek(Termek termek) {
+        this.termek = termek;
+    }
+
+    public Integer getMennyiseg() {
+        return mennyiseg;
+    }
+
+    public void setMennyiseg(Integer mennyiseg) {
+        this.mennyiseg = mennyiseg;
+    }
+
+    public BigDecimal getAr() {
+        return ar;
+    }
+
+    public void setAr(BigDecimal ar) {
+        this.ar = ar;
+    }
 }

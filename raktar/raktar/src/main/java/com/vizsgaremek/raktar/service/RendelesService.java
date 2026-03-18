@@ -12,6 +12,7 @@ import com.vizsgaremek.raktar.repository.RendelesRepository;
 import com.vizsgaremek.raktar.repository.RendelesTetelRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,11 +20,16 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class RendelesService {
-    private final RendelesRepository rendelesRepository;
-    private final RendelesTetelRepository tetelRepository;
-    private final KeszletService keszletService;
-    private final KeszletmozgasRepository keszletmozgasRepository;
-    private final FelhasznaloRepository felhasznaloRepository;
+    @Autowired
+    private RendelesRepository rendelesRepository;
+    @Autowired
+    private RendelesTetelRepository tetelRepository;
+    @Autowired
+    private KeszletService keszletService;
+    @Autowired
+    private KeszletmozgasRepository keszletmozgasRepository;
+    @Autowired
+    private FelhasznaloRepository felhasznaloRepository;
 
     @Transactional
     public void statuszModositas(Integer rendelesId, RendelesStatusz ujStatusz, Integer vegrehajtoUserId){
