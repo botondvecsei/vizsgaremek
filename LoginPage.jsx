@@ -12,7 +12,6 @@ export default function LoginPage({ setUser }) {
     setError("");
     setLoading(true);
 
-    // Szimuláljuk a backend hívást
     setTimeout(() => {
       setUser({
         id: 1,
@@ -30,7 +29,7 @@ export default function LoginPage({ setUser }) {
       id: 999,
       nev: "Demo",
       email: "demo@raktr.hu",
-      jogkor: "RAKTAROS"   // Írd át ADMIN-ra ha több jogot akarsz
+      jogkor: "RAKTAROS"   
     });
   };
 
@@ -42,7 +41,7 @@ export default function LoginPage({ setUser }) {
             <Package className="text-white" size={40} />
           </div>
           <h1 className="text-3xl font-bold text-gray-800">Raktár Kezelő</h1>
-          <p className="text-gray-500 mt-1">Diák projekt verzió</p>
+          
         </div>
 
         <form onSubmit={handleLogin} className="space-y-5">
