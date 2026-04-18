@@ -6,7 +6,7 @@ import { Toaster } from "sonner";
 import LoginPage from "./pages/LoginPage";
 import Index from "./pages/Index";
 import KeszletRoute from "./pages/KeszletRoute";
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8081/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
 
 function App() {
   const [user, setUser] = useState(null);
