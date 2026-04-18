@@ -18,7 +18,6 @@ export default function AppLayout({ user, setUser, children }) {
             </div>
             <div>
               <h1 className="font-bold text-xl">Raktár Kezelő</h1>
-              <p className="text-xs text-gray-500 -mt-1">Diák projekt</p>
             </div>
           </div>
 
