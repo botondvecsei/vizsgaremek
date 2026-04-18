@@ -21,33 +21,29 @@ export default function KeszletPage() {
   const mozgatas = (e) => {
     e.preventDefault();
 
-    if (!selectedTermek || mennyiseg <= 0) {
-      toast.error("Válassz terméket és adj meg mennyiséget!");
-      return;
-    }
+    const mozgasAdat = {
+      termekId: parseInt(selectedTermek),
+      mennyiseg: mennyiseg,
+      tipus: tipus,
+      megjegyzes: megjegyzes
+    };
 
-    const termek = termekek.find(t => t.id === parseInt(selectedTermek));
-    
-    let ujSzint = termek.jelenlegiSzint;
-    
-    if (tipus === "BE") {
-      ujSzint += mennyiseg;
-      toast.success(`${mennyiseg} db bevétel rögzítve: ${termek.nev}`);
-    } else {
-      ujSzint -= mennyiseg;
-      if (ujSzint < 0) ujSzint = 0;
-      toast.success(`${mennyiseg} db kivétel rögzítve: ${termek.nev}`);
-    }
-
-    setTermekek(termekek.map(t => 
-      t.id === parseInt(selectedTermek) ? { ...t, jelenlegiSzint: ujSzint } : t
-    ));
-
-    
-    setMennyiseg(0);
-    setMegjegyzes("");
+    fetch("http://localhost:8081/api/keszlet/mozgas", {
+      method: "POST", 
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(mozgasAdat) 
+    })
+    .then(response => {
+      if (response.ok) {
+        toast.success("Sikeres mentés az adatbázisba!");
+      } else {
+        toast.error("Hiba történt a mentés során!");
+      }
+    })
+    .catch(error => console.error("Hiba:", error));
   };
-
   return (
     <div className="p-6">
       <h1 className="text-3xl font-bold mb-6">Készlet Mozgás</h1>
