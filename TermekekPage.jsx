@@ -14,17 +14,18 @@ export default function TermekekPage() {
     minSzint: 0,
     ajanlottSzint: 0
   });
-
-  // Szimulált adatok (diákos megoldás, nincs backend)
-  useEffect(() => {
-    setTimeout(() => {
-      setTermekek([
-        { id: 1, nev: "Csavar M6x50", jelenlegiSzint: 245, minSzint: 100, ajanlottSzint: 500 },
-        { id: 2, nev: "Anya M8", jelenlegiSzint: 45, minSzint: 80, ajanlottSzint: 300 },
-        { id: 3, nev: "Fúrógép akku", jelenlegiSzint: 12, minSzint: 5, ajanlottSzint: 15 },
-      ]);
-      setLoading(false);
-    }, 600);
+  
+useEffect(() => {
+    fetch("http://localhost:8081/api/termekek") // Hívjuk a te Java végpontodat
+      .then(response => response.json())        // A választ JSON-ná alakítjuk
+      .then(data => {
+        setTermekek(data);                      // Eltesszük az adatokat a React-be
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error("Hiba történt a lekéréskor:", error);
+        setLoading(false);
+      });
   }, []);
 
   const hozzaadTermek = (e) => {
