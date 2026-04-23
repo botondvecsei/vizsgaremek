@@ -10,16 +10,20 @@ export default function KeszletPage() {
   const [megjegyzes, setMegjegyzes] = useState("");
 
   
-  useEffect(() => {
-    setTermekek([
-      { id: 1, nev: "Csavar M6x50", jelenlegiSzint: 245 },
-      { id: 2, nev: "Anya M8", jelenlegiSzint: 45 },
-      { id: 3, nev: "Fúrógép akku", jelenlegiSzint: 12 },
-    ]);
+  etch("http://localhost:8081/api/termekek") // Hívjuk a te Java végpontodat
+      .then(response => response.json())        // A választ JSON-ná alakítjuk
+      .then(data => {
+        setTermekek(data);                      // Eltesszük az adatokat a React-be
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error("Hiba történt a lekéréskor:", error);
+        setLoading(false);
+      });
   }, []);
-
-  const mozgatas = (e) => {
+const mozgatas = (e) => {
     e.preventDefault();
+
 
     if (!selectedTermek || mennyiseg <= 0) {
       toast.error("Válassz terméket és adj meg mennyiséget!");
