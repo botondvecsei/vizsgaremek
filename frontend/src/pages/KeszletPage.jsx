@@ -10,19 +10,22 @@ export default function KeszletPage() {
   const [megjegyzes, setMegjegyzes] = useState("");
 
   
-  etch("http://localhost:8081/api/termekek") // Hívjuk a te Java végpontodat
-      .then(response => response.json())        // A választ JSON-ná alakítjuk
-      .then(data => {
-        setTermekek(data);                      // Eltesszük az adatokat a React-be
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error("Hiba történt a lekéréskor:", error);
-        setLoading(false);
-      });
-  }, []);
-const mozgatas = (e) => {
-    e.preventDefault();
+  fetch("http://localhost:8081/api/keszlet/mozgas", {
+      method: "POST", 
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(mozgasAdat) 
+    })
+    .then(response => {
+      if (response.ok) {
+        toast.success("Sikeres mentés az adatbázisba!");
+      } else {
+        toast.error("Hiba történt a mentés során!");
+      }
+    })
+    .catch(error => console.error("Hiba:", error));
+  };
 
 
     if (!selectedTermek || mennyiseg <= 0) {
