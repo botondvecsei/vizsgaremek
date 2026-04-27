@@ -10,23 +10,16 @@ export default function KeszletPage() {
   const [megjegyzes, setMegjegyzes] = useState("");
 
   
-  fetch("http://localhost:8081/api/keszlet/mozgas", {
-      method: "POST", 
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(mozgasAdat) 
-    })
-    .then(response => {
-      if (response.ok) {
-        toast.success("Sikeres mentés az adatbázisba!");
-      } else {
-        toast.error("Hiba történt a mentés során!");
-      }
-    })
-    .catch(error => console.error("Hiba:", error));
-  };
+  useEffect(() => {
+    setTermekek([
+      { id: 1, nev: "Csavar M6x50", jelenlegiSzint: 245 },
+      { id: 2, nev: "Anya M8", jelenlegiSzint: 45 },
+      { id: 3, nev: "Fúrógép akku", jelenlegiSzint: 12 },
+    ]);
+  }, []);
 
+  const mozgatas = (e) => {
+    e.preventDefault();
 
     if (!selectedTermek || mennyiseg <= 0) {
       toast.error("Válassz terméket és adj meg mennyiséget!");
