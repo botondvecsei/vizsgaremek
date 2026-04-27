@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "4b684815-3d85-48b4-93c4-e490ec31c519",
+		"name": "Raktar App API",
+		"description": "Postman collection for Raktar Spring Boot API.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"test@example.com\",\n  \"jelszo\": \"jelszo123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Termek",
+			"item": [
+				{
+					"name": "Get All Termekek",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/termek",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"termek"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Termek by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/termek/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"termek",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Termek",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nev\": \"Új Termék\",\n  \"ar\": 1500\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/termek",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"termek"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Termek",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nev\": \"Frissített Termék\",\n  \"ar\": 2000\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/termek/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"termek",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Termek",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/termek/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"termek",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rendeles",
+			"item": [
+				{
+					"name": "Statusz Modositas",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ujStatusz\": \"TELJESITVE\",\n  \"userId\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/rendelesek/1/statusz",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"rendelesek",
+								"1",
+								"statusz"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Keszlet",
+			"item": [
+				{
+					"name": "Keszlet Mozgas Rogzites",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"termekId\": 1,\n  \"mennyiseg\": 10,\n  \"tipus\": \"BEVETEL\",\n  \"megjegyzes\": \"Teszt bevét\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/keszlet/mozgas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"keszlet",
+								"mozgas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Beszerzes",
+			"item": [
+				{
+					"name": "Automatikus Beszerzes Inditas",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/beszerzes/futtatas1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"beszerzes",
+								"futtatas1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080"
+		}
+	]
+}
